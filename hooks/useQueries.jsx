@@ -38,6 +38,9 @@ export const useQueries = ({ prefixUrl = "", headers = {} } = {}) => {
     }
   }, [])
 
-  return { ...data }
+  return {
+    ...data,
+    refetch: () => fetchingData({ url: prefixUrl, headers: headers }), // Menambahkan fungsi refetch
+  }
   
 }

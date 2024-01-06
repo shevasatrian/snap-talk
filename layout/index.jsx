@@ -12,6 +12,5 @@ export default function Layout({ children, metaTitle, metaDescription }) {
     </Head>
     <Header />
     {children}
-    <Footer />
   </div>
 }

@@ -7,6 +7,7 @@ import { useMutation } from "@/hooks/useMutation";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { UserContext } from "@/context/userContext";
+import Image from 'next/image'
 
 export default function Header() {
   const [isMoreDropdownOpen, setIsMoreDropdownOpen] = useState(false);
@@ -56,8 +57,8 @@ export default function Header() {
     <header className="bg-white shadow-md p-4 flex items-center justify-between">
       <div className=" container flex items-center mx-auto ">
         <div className="flex items-center">
-          <h1>Icon</h1>
-          <div className="mr-4">
+        <Image src="/social_media.png" width={35} height={35} />
+          <div className="mx-4">
             {/* Kolom Search */}
             <input
               type="text"
