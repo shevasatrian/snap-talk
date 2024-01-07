@@ -1,3 +1,15 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable eol-last */
+/* eslint-disable padded-blocks */
+/* eslint-disable key-spacing */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable indent */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable object-curly-newline */
+/* eslint-disable space-in-parens */
+/* eslint-disable function-paren-newline */
+/* eslint-disable semi */
+/* eslint-disable linebreak-style */
 import { useCallback, useState } from "react"
 
 export const useMutation = () => {

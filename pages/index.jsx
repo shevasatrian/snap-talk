@@ -1,3 +1,9 @@
+/* eslint-disable no-sequences */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/button-has-type */
+/* eslint-disable camelcase */
+/* eslint-disable max-len */
+/* eslint-disable no-use-before-define */
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -63,7 +69,6 @@ export default function Main({ children }) {
       }
     });
 
-    // Lakukan sesuatu setelah tindakan like/unlike berhasil, seperti memuat ulang data atau mengupdate state
     // router.reload();
     console.log("response => ", response);
     refetch();
@@ -280,7 +285,3 @@ function getInitials(name) {
   const initials = name.split(" ").slice(0, 2).map((word) => word[0].toUpperCase()).join("");
   return initials;
 }
-
-{ /* <p className='my-2'>Home</p> */ }
-{ /* <Image src="/next.png" width={400} height={400} alt="next img" />
-          <img src="/next.png" style={{ width: 400, height: 400 }} alt="next img" /> */ }

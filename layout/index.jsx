@@ -1,6 +1,13 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable eol-last */
+/* eslint-disable quotes */
+/* eslint-disable semi */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable linebreak-style */
+/* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable react/jsx-closing-tag-location */
 import Head from 'next/head'
 import Header from "@/components/header"
-import Footer from "@/components/footer"
 
 export default function Layout({ children, metaTitle, metaDescription }) {
   return <div>

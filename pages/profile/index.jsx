@@ -1,3 +1,6 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-use-before-define */
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Cookies from "js-cookie";

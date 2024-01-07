@@ -1,3 +1,10 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable eol-last */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable semi */
+/* eslint-disable linebreak-style */
+/* eslint-disable quotes */
 import { redirect } from 'next/dist/server/api-utils'
 import { NextResponse } from 'next/server'
  

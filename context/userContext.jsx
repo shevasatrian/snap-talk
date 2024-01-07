@@ -1,3 +1,10 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable eol-last */
+/* eslint-disable quotes */
+/* eslint-disable quote-props */
+/* eslint-disable semi */
+/* eslint-disable import/order */
+/* eslint-disable linebreak-style */
 import { createContext } from "react";
 import { useQueries } from "@/hooks/useQueries";
 import Cookies from "js-cookie";

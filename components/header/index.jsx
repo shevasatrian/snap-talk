@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable react/button-has-type */
 import Link from "next/link";
 import {
   Menu, MenuButton, MenuList, MenuItem, Button

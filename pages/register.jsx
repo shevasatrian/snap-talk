@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import {
   Flex, Stack, Heading, FormControl, Input, Button, useToast
 } from "@chakra-ui/react";

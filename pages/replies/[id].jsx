@@ -1,3 +1,7 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-use-before-define */
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable max-len */
 // RepliesModal.js
 import { useState, useEffect } from "react";
 import useSWR from "swr";

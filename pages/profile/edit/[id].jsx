@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 // edit.js
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";

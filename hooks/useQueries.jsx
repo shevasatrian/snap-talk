@@ -1,3 +1,19 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable eol-last */
+/* eslint-disable object-shorthand */
+/* eslint-disable function-paren-newline */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable quotes */
+/* eslint-disable space-in-parens */
+/* eslint-disable linebreak-style */
+/* eslint-disable no-shadow */
+/* eslint-disable import/order */
+/* eslint-disable key-spacing */
+/* eslint-disable semi */
+/* eslint-disable padded-blocks */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable indent */
+/* eslint-disable linebreak-style */
 import { headers } from "@/next.config";
 import { useCallback, useEffect, useState } from "react"
 

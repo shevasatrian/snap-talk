@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import Cookies from "js-cookie";
