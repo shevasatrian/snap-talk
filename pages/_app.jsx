@@ -1,7 +1,7 @@
-import '@/styles/globals.css'
-import { ChakraProvider } from '@chakra-ui/react'
-import { UserContextProvider } from '@/context/userContext'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import "@/styles/globals.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { UserContextProvider } from "@/context/userContext";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -10,9 +10,7 @@ export default function App({ Component, pageProps }) {
         <UserContextProvider>
           <Component {...pageProps} />
         </UserContextProvider>
-      </ChakraProvider> 
+      </ChakraProvider>
     </QueryClientProvider>
-  )
-  
- 
+  );
 }

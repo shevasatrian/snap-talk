@@ -12,6 +12,6 @@ export default function Footer() {
         <Link href="instagram.com/sheva_str" className="text-cyan-500 font-semibold hover:text-cyan-400">@ShevaSatrian</Link> using Next JS
       </div>
     </>
-    
-  ) 
+
+  );
 }

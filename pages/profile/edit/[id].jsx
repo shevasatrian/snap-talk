@@ -1,12 +1,12 @@
 // edit.js
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
-const EditPostModal = ({ postId, onClose }) => {
+function EditPostModal({ postId, onClose }) {
   const router = useRouter();
   const [post, setPost] = useState({
-    description: '',
+    description: "",
   });
 
   useEffect(() => {
@@ -14,17 +14,17 @@ const EditPostModal = ({ postId, onClose }) => {
     async function fetchingData() {
       try {
         const res = await fetch(`https://paace-f178cafcae7b.nevacloud.io/api/post/${postId}`, {
-          method: 'GET',
-          headers: { 
+          method: "GET",
+          headers: {
             "Content-type": "application/json",
-            'Authorization': `Bearer ${Cookies.get('user_token')}`,
-           },
+            Authorization: `Bearer ${Cookies.get("user_token")}`,
+          },
         });
         const listPost = await res.json();
-        console.log('list posts => ', listPost?.data);
+        console.log("list posts => ", listPost?.data);
         setPost(listPost?.data);
       } catch (error) {
-        console.error('Error fetching note details:', error);
+        console.error("Error fetching note details:", error);
       }
     }
 
@@ -34,22 +34,22 @@ const EditPostModal = ({ postId, onClose }) => {
   const handleUpdate = async () => {
     try {
       const response = await fetch(`https://paace-f178cafcae7b.nevacloud.io/api/post/update/${postId}`, {
-        method: 'PATCH',
-        headers: { 
+        method: "PATCH",
+        headers: {
           "Content-type": "application/json",
-          'Authorization': `Bearer ${Cookies.get('user_token')}`,
-         },
+          Authorization: `Bearer ${Cookies.get("user_token")}`,
+        },
         body: JSON.stringify({ description: post?.description }),
       });
       const result = await response.json();
       if (result?.success) {
         // Close the modal on successful update
-        router.reload()
+        router.reload();
         onClose();
       }
-      console.log('result => ', result);
+      console.log("result => ", result);
     } catch (error) {
-      console.error('Error updating note:', error);
+      console.error("Error updating note:", error);
     }
   };
 
@@ -85,6 +85,6 @@ const EditPostModal = ({ postId, onClose }) => {
       </div>
     </div>
   );
-};
+}
 
 export default EditPostModal;
