@@ -123,26 +123,28 @@ function RepliesModal({ isOpen, onClose, postId }) {
               </div>
             )}
 
-            <div className="overflow-y-auto max-h-64">
-              {repliesData.map((reply) => (
-                <div key={reply.id} className="mb-2">
-                  <p className="font-semibold">{reply.user.name}</p>
-                  <p>{reply.description}</p>
-                  <p className="text-gray-500">{formatDate(reply.created_at)}</p>
-                  {reply.is_own_reply && (
-                    <button
-                      onClick={() => handleDeleteReply(reply.id)}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      Delete
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
+<div className="overflow-y-auto max-h-64">
+  {repliesData.map((reply) => (
+    <div key={reply.id} className="mb-1 flex justify-between items-start p-2 hover:bg-gray-100 rounded-xl">
+      <div>
+        <p className="font-semibold">{reply.user.name}</p>
+        <p>{reply.description}</p>
+        <p className="text-gray-500 text-sm">{formatDate(reply.created_at)}</p>
+      </div>
+      {reply.is_own_reply && (
+        <button
+          onClick={() => handleDeleteReply(reply.id)}
+          className="text-red-500 hover:text-red-700 mr-2"
+        >
+          Delete
+        </button>
+      )}
+    </div>
+  ))}
+</div>
 
             <textarea
-              className="w-full p-2 border bg-gray-200 border-gray-300 rounded-xl"
+              className="w-full mt-2 p-2 border bg-gray-200 border-gray-300 rounded-xl"
               rows="3"
               value={payload?.description}
               onChange={(event) => setPayload({ ...payload, description: event.target.value })}
@@ -150,7 +152,7 @@ function RepliesModal({ isOpen, onClose, postId }) {
             ></textarea>
             <button
               onClick={() => HandleSubmit()}
-              className="mt-2 px-6 bg-blue-500 text-white p-2 rounded-2xl hover:bg-blue-600"
+              className="mt-2 mr-2 px-6 bg-blue-500 text-white p-2 rounded-2xl hover:bg-blue-600"
               type="button"
             >
               Reply

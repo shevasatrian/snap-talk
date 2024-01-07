@@ -140,7 +140,6 @@ export default function Header() {
               className={`absolute ${isUserDropdownOpen ? 'block' : 'hidden'} mt-2 space-y-2 bg-white shadow-lg rounded-md w-full`}
             >
               {/* Tambahkan item dropdown sesuai kebutuhan */}
-              <li className="font-semibold text-lg py-2 px-2 mx-1 border-b border-black">Profile</li>
               <li className="text-base font-normal px-2 py-1 hover:bg-slate-200"><Link href="/profile">Profile</Link></li>
               <li className="hover:bg-slate-200">
                 <button

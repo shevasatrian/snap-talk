@@ -155,7 +155,7 @@ export default function Main({ children }) {
                 {/* menampilkan post */}
                 <div className="overflow-y-auto max-h-svh">
                   {dataPost?.data.map((post) => (
-                  <div key={post.id} className="border rounded-2xl py-4 px-4 bg-white">
+                  <div key={post.id} className="border rounded-2xl py-4 px-4 bg-white mb-3">
                     <div className="flex items-center mb-4">
                       {/* Foto Profil User */}
                       <div className="bg-orange-400 h-12 w-12 rounded-full flex items-center justify-center text-gray-700 text-2xl font-bold mr-3">
@@ -183,7 +183,7 @@ export default function Main({ children }) {
                     {/* Action Buttons (Like dan Replies) */}
                     <div className="flex">
                       <button
-                        className={`mr-4 p-2 border rounded-2xl hover:bg-gray-200 ${post.is_like_post ? 'bg-gray-300' : 'bg-white'}`}
+                        className={`mr-2 p-2 border rounded-2xl hover:bg-gray-200 ${post.is_like_post ? 'bg-gray-300' : 'bg-white'}`}
                         onClick={() => handleToggleLike(post.id, post.is_like_post)}
                       >
                         {post.is_like_post ? '❤️' : '🤍'}{post.likes_count} Like
@@ -200,21 +200,21 @@ export default function Main({ children }) {
               <div className="w-full px-4 lg:w-1/4">
                 <div className="border rounded-2xl py-4 px-2 mb-3 bg-white">
                   <h2 className="p-2 text-lg font-semibold text-gray-700 border-b my-2">Suggestion for you</h2>
-                  <div className="flex items-center px-4 mb-4">
+                  <div className="flex items-center px-4 mb-1 hover:bg-gray-200 py-2 rounded-xl">
                     <Image src="/avatar-1.png" width={50} height={50} />
                     <div className="ml-4">
                       <h3 className="text-base font-semibold">Bintang Khd</h3>
                       <p>Palembang, Indonesia</p>
                     </div>
                   </div>
-                  <div className="flex items-center px-4 mb-4">
+                  <div className="flex items-center px-4 mb-1 hover:bg-gray-200 py-2 rounded-xl">
                     <Image src="/avatar-2.png" width={50} height={50} />
                     <div className="ml-4">
                       <h3 className="text-base font-semibold">Farhan Ghifari</h3>
                       <p>Lubuk Linggau, Indonesia</p>
                     </div>
                   </div>
-                  <div className="flex items-center px-4 mb-4">
+                  <div className="flex items-center px-4 mb-1 hover:bg-gray-200 py-2 rounded-xl">
                     <Image src="/avatar-3-1.png" width={50} height={50} />
                     <div className="ml-4">
                       <h3 className="text-base font-semibold">Nadya Andriani</h3>
@@ -226,14 +226,14 @@ export default function Main({ children }) {
 
                 <div className="border rounded-2xl py-4 px-2 mt-6 bg-white">
                   <h2 className="p-2 text-lg font-semibold text-gray-700 border-b my-2">Popular Pages</h2>
-                  <div className="flex items-center px-4 mb-4">
+                  <div className="flex items-center px-4 mb-1 hover:bg-gray-200 py-2 rounded-xl">
                     <Image src="/tiktok.png" width={50} height={50} />
                     <div className="ml-4">
                       <h3 className="text-base font-semibold">Tik Tok</h3>
                       <p>Social Media</p>
                     </div>
                   </div>
-                  <div className="flex items-center px-4 mb-4">
+                  <div className="flex items-center px-4 mb-1 hover:bg-gray-200 py-2 rounded-xl">
                     <Image src="/apple.png" width={50} height={50} />
                     <div className="ml-4">
                       <h3 className="text-base font-semibold">Apple</h3>
@@ -241,7 +241,7 @@ export default function Main({ children }) {
                     </div>
                   </div>
                   
-                  <div className="flex items-center px-4 mb-4">
+                  <div className="flex items-center px-4 mb-1 hover:bg-gray-200 py-2 rounded-xl">
                     <Image src="/github.png" width={50} height={50} />
                     <div className="ml-4">
                       <h3 className="text-base font-semibold">Github</h3>

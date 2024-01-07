@@ -156,7 +156,7 @@ export default function Profile() {
                     </div>
 
                     <div className="ml-auto">
-                      <button className="mr-2 px-4 py-1 bg-blue-500 text-gray-100 border border-gray-300 hover:bg-blue-400 rounded-2xl"
+                      <button className="mr-1 px-4 py-1 bg-blue-500 text-gray-100 border border-gray-300 hover:bg-blue-400 rounded-2xl"
                       onClick={() => openEditPostModal(post.id)}>Edit</button>
                       <button className="p-2 px-4 py-1 bg-red-500 text-gray-100 border border-gray-300 hover:bg-red-400 rounded-2xl" 
                       onClick={() => openDeletePostModal(post.id)}>Delete</button>
@@ -168,7 +168,7 @@ export default function Profile() {
 
                   {/* Action Buttons (Like dan Replies) */}
                   <div className="flex">
-                    <button className="mr-4 p-2 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-200 rounded-2xl">❤️{post.likes_count} Like</button>
+                    <button className="mr-2 p-2 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-200 rounded-2xl">❤️{post.likes_count} Like</button>
                     <button className="p-2 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-200 rounded-2xl">💬{post.replies_count} Replies</button>
                   </div>
                 </div>
