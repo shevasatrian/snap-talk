@@ -4,6 +4,7 @@ import { useMutation } from "@/hooks/useMutation"
 import Cookies from "js-cookie"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Register() {
   const router = useRouter()
@@ -13,32 +14,40 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
+    phone: "",
+    hobby: "",
+    dob: "",
   })
+
+  const [showPassword, setShowPassword] = useState(false)
 
   const HandleSubmit = async () => {
     const response = await mutate({ 
       url: 'https://paace-f178cafcae7b.nevacloud.io/api/register',
       payload,
     })
-    console.log('response => ', response)
+    // console.log('response => ', response)
+    if (!response?.success) {
+          toast({
+            title: 'Register Failed',
+            description: "Please repeat the registration",
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          })
+        } else {
+          toast({
+            title: 'Register Success',
+            description: "Please Login",
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          })
+          router.push('/login')
+        }
   }
-
-  // const HandleSubmit = async () => {
-  //   const response = await mutate({ url: "https://paace-f178cafcae7b.nevacloud.io/api/login", payload})
-  //   if (!response?.success) {
-  //     toast({
-  //       title: 'Login Gagal',
-  //       description: "email dan password tidak sesuai",
-  //       status: 'error',
-  //       duration: 2000,
-  //       isClosable: true,
-  //       position: "top",
-  //     })
-  //   } else {
-  //     Cookies.set('user_token', response?.data?.token, { expires: new Date(response?.data?.expires_at ), path: "/"})
-  //     router.push('/')
-  //   }
-  // }
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-200">
@@ -50,7 +59,8 @@ export default function Register() {
             className="border w-full p-2 rounded-2xl focus:outline-none focus:border-blue-500"
             value={payload?.name}
             onChange={(event) => setPayload({ ...payload, name: event.target.value })}
-            placeholder="Email"
+            placeholder="Name"
+            required
           />
         </div>
         <div className="mb-4">
@@ -60,16 +70,60 @@ export default function Register() {
             value={payload?.email}
             onChange={(event) => setPayload({ ...payload, email: event.target.value })}
             placeholder="Email"
+            required
           />
         </div>
-        <div className="mb-4">
-          <label for="password">Password</label>
+        <div className="mb-4 relative">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+            Password
+          </label>
           <input
             className="border w-full p-2 rounded-2xl focus:outline-none focus:border-blue-500"
             value={payload?.password}
             onChange={(event) => setPayload({ ...payload, password: event.target.value })}
             placeholder="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
+            required
+          />
+          <button
+            className="absolute top-1/2 right-2 transform -translate-y-1/4 px-2 py-3 text-sm text-gray-500 focus:outline-none"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
+        <div className="mb-4">
+          <label for="dob">Date of Birthday</label>
+          <input
+            className="border w-full p-2 rounded-2xl focus:outline-none focus:border-blue-500"
+            value={payload?.dob}
+            onChange={(event) => setPayload({ ...payload, dob: event.target.value })}
+            id="dob"
+            type="date"
+          />
+        </div>
+        <div className="mb-4">
+          <label for="phone">Phone</label>
+          <input
+            className="border w-full p-2 rounded-2xl focus:outline-none focus:border-blue-500"
+            value={payload?.phone}
+            onChange={(event) => {
+              const numericValue = event.target.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+              setPayload({ ...payload, phone: numericValue });
+            }}
+            type="tel"
+            id="phone"
+            pattern="[0-9]*"
+            placeholder="Enter numeric phone"
+          />
+        </div>
+        <div className="mb-4">
+          <label for="hobby">Hobby</label>
+          <input
+            className="border w-full p-2 rounded-2xl focus:outline-none focus:border-blue-500"
+            value={payload?.hobby}
+            onChange={(event) => setPayload({ ...payload, hobby: event.target.value })}
+            placeholder="Hobby"
           />
         </div>
         <div>

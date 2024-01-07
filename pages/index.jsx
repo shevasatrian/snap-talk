@@ -153,46 +153,48 @@ export default function Main({ children }) {
                 </div>
 
                 {/* menampilkan post */}
-                {dataPost?.data.map((post) => (
-                <div key={post.id} className="border rounded-2xl py-4 px-4 bg-white">
-                  <div className="flex items-center mb-4">
-                    {/* Foto Profil User */}
-                    <div className="bg-orange-400 h-12 w-12 rounded-full flex items-center justify-center text-gray-700 text-2xl font-bold mr-3">
-                        {post.user.name ? getInitials(post.user.name) : "-"}
+                <div className="overflow-y-auto max-h-svh">
+                  {dataPost?.data.map((post) => (
+                  <div key={post.id} className="border rounded-2xl py-4 px-4 bg-white">
+                    <div className="flex items-center mb-4">
+                      {/* Foto Profil User */}
+                      <div className="bg-orange-400 h-12 w-12 rounded-full flex items-center justify-center text-gray-700 text-2xl font-bold mr-3">
+                          {post.user.name ? getInitials(post.user.name) : "-"}
+                      </div>
+                      
+                      <div>
+                        {/* Nama User */}
+                        <h3 className="font-semibold text-lg">
+                          {post.user.name}
+                          {post.is_own_post && (
+                            <span className="text-gray-500"> (You)</span>
+                          )}
+                        </h3>
+                        {/* Email User */}
+                        <p className="text-gray-500">{post.user.email}</p>
+                        {/* Tanggal Postingan */}
+                        <p className="text-gray-500">{formatDate(post.created_at)}</p>
+                      </div>
                     </div>
-                    
-                    <div>
-                      {/* Nama User */}
-                      <h3 className="font-semibold text-lg">
-                        {post.user.name}
-                        {post.is_own_post && (
-                          <span className="text-gray-500"> (You)</span>
-                        )}
-                      </h3>
-                      {/* Email User */}
-                      <p className="text-gray-500">{post.user.email}</p>
-                      {/* Tanggal Postingan */}
-                      <p className="text-gray-500">{formatDate(post.created_at)}</p>
+
+                    {/* Description/Teks Postingan */}
+                    <p className="mb-4">{post.description}</p>
+
+                    {/* Action Buttons (Like dan Replies) */}
+                    <div className="flex">
+                      <button
+                        className={`mr-4 p-2 border rounded-2xl hover:bg-gray-200 ${post.is_like_post ? 'bg-gray-300' : 'bg-white'}`}
+                        onClick={() => handleToggleLike(post.id, post.is_like_post)}
+                      >
+                        {post.is_like_post ? '❤️' : '🤍'}{post.likes_count} Like
+                      </button>
+                      <button 
+                      className="p-2 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-200 rounded-2xl" 
+                      onClick={() => handleRepliesClick(post)}>💬{post.replies_count} Replies</button>
                     </div>
                   </div>
-
-                  {/* Description/Teks Postingan */}
-                  <p className="mb-4">{post.description}</p>
-
-                  {/* Action Buttons (Like dan Replies) */}
-                  <div className="flex">
-                    <button
-                      className={`mr-4 p-2 border rounded-2xl hover:bg-gray-200 ${post.is_like_post ? 'bg-gray-300' : 'bg-white'}`}
-                      onClick={() => handleToggleLike(post.id, post.is_like_post)}
-                    >
-                      {post.is_like_post ? '❤️' : '🤍'}{post.likes_count} Like
-                    </button>
-                    <button 
-                    className="p-2 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-200 rounded-2xl" 
-                    onClick={() => handleRepliesClick(post)}>💬{post.replies_count} Replies</button>
-                  </div>
+                  ))}
                 </div>
-                ))}
               </div>
               
               <div className="w-full px-4 lg:w-1/4">

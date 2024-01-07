@@ -5,13 +5,15 @@ import { useQueries } from "@/hooks/useQueries";
 import Cookies from "js-cookie";
 import { useMutation } from "@/hooks/useMutation";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "@/context/userContext";
 import Image from 'next/image'
+import { formatDistanceToNow } from 'date-fns'
 
 export default function Header() {
   const [isMoreDropdownOpen, setIsMoreDropdownOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const [hasNewNotification, setHasNewNotification] = useState(false);
 
   // const userData = useContext(UserContext)
   const router = useRouter()
@@ -21,8 +23,30 @@ export default function Header() {
     'Authorization': `Bearer ${Cookies.get('user_token')}`,
   }})
 
+  console.log("User data:", data)
+
+  const { data: notification } = useQueries({prefixUrl: 'https://paace-f178cafcae7b.nevacloud.io/api/notifications',
+  headers:  {
+    'Authorization': `Bearer ${Cookies.get('user_token')}`,
+  }})
+
+  useEffect(() => {
+    // Check apakah terdapat notifikasi baru dan atur state hasNewNotification
+    if (notification?.data?.length > 0) {
+      setHasNewNotification(true);
+    } else {
+      setHasNewNotification(false);
+    }
+  }, [notification]);
+
+  // console.log("Notifications:", notification)
   const toggleMoreDropdown = () => {
     setIsMoreDropdownOpen(!isMoreDropdownOpen);
+
+    // Jika dropdown dibuka, atur hasNewNotification menjadi false
+    if (!isMoreDropdownOpen) {
+      setHasNewNotification(false);
+    }
   };
 
   const toggleUserDropdown = () => {
@@ -50,7 +74,6 @@ export default function Header() {
       router.push("/login")
     }
   }
-
   
 
   return (
@@ -68,25 +91,32 @@ export default function Header() {
           </div>
           {/* Menu Navigasi */}
           <ul className="flex space-x-4">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/profile">Profile</Link></li>
-            <li><Link href="/users">Users</Link></li>
-            <li><Link href="/users/detail">Users Detail</Link></li>
-            <li>
+            <li className="hover:bg-gray-200 rounded-xl py-2 px-3"><Link  href="/">Home</Link></li>
+            <li className="hover:bg-gray-200 rounded-xl py-2 px-3"><Link href="/profile">Profile</Link></li>
+            <li className="hover:bg-gray-200 rounded-xl py-2 px-3">
               {/* Dropdown Menu */}
               <div className="relative group">
                 <button
                   onClick={toggleMoreDropdown}
                   className="text-gray-700 hover:text-gray-900 focus:outline-none"
                 >
-                  More
+                 {hasNewNotification && <span className="text-red-500 font-bold">*</span>}Notification
                 </button>
                 <ul
-                  className={`absolute ${isMoreDropdownOpen ? 'block' : 'hidden'} mt-2 space-y-2 bg-white shadow-lg rounded-md`}
+                  className={`absolute min-w-96 overflow-y-auto max-h-56 ${isMoreDropdownOpen ? 'block' : 'hidden'} mt-2 py-2 space-y-2 bg-white shadow-lg rounded-md`}
                 >
-                  {/* Tambahkan item dropdown sesuai kebutuhan */}
-                  <li><Link href="/dropdown-item-1">Dropdown Item 1</Link></li>
-                  <li><Link href="/dropdown-item-2">Dropdown Item 2</Link></li>
+                  {notification?.data?.length > 0 ? (
+                    notification.data.map((notif) => (
+                      <li key={notif.id} className="px-2 pt-1 hover:bg-slate-200">
+                        <span className="text-blue-400 font-semibold">{notif.user.name} </span>
+                        {notif.remark} your post
+                        <span className="text-gray-500 -m-1 ml-1 text-sm flex">{formatDistanceToNow(new Date(notif.created_at), { addSuffix: true })}</span></li>
+                    ))
+                  ) : (
+                    <div className="h-24 flex items-center justify-center ">
+                      <li className="text-gray-500">No notifications yet</li>
+                    </div>
+                  )}
                 </ul>
               </div>
             </li>
@@ -95,7 +125,7 @@ export default function Header() {
         {/* Nama Pengguna dan Logout */}
         <div className="items-center ml-auto">
           {/* Dropdown Menu untuk Nama Pengguna */}
-          <div className="relative group">
+          <div className="relative group hover:bg-slate-200 rounded-xl">
             <button
               onClick={toggleUserDropdown}
               className="text-gray-700 font-bold flex items-center hover:text-blue-600 py-1 px-3 rounded-full focus:outline-none"
@@ -111,14 +141,14 @@ export default function Header() {
             >
               {/* Tambahkan item dropdown sesuai kebutuhan */}
               <li className="font-semibold text-lg py-2 px-2 mx-1 border-b border-black">Profile</li>
-              <li><Link href="/profile">Profile</Link></li>
-              <li>
+              <li className="text-base font-normal px-2 py-1 hover:bg-slate-200"><Link href="/profile">Profile</Link></li>
+              <li className="hover:bg-slate-200">
                 <button
                   onClick={() => {
                     closeDropdowns();
                     HandleLogout();
                   }}
-                  className="w-full text-left"
+                  className="text-base font-normal px-2 py-1"
                 >
                   Logout
                 </button>

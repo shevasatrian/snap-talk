@@ -168,7 +168,7 @@ export default function Profile() {
 
                   {/* Action Buttons (Like dan Replies) */}
                   <div className="flex">
-                    <button className="mr-4 p-2 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-200 rounded-2xl">🤍❤️{post.likes_count} Like</button>
+                    <button className="mr-4 p-2 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-200 rounded-2xl">❤️{post.likes_count} Like</button>
                     <button className="p-2 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-200 rounded-2xl">💬{post.replies_count} Replies</button>
                   </div>
                 </div>

@@ -94,7 +94,7 @@ function RepliesModal({ isOpen, onClose, postId }) {
             {postData && (
               <div>
                 
-                <div className="border rounded-2xl py-4 px-4 bg-white">
+                <div className="border rounded-2xl py-4 px-4 bg-white ">
                   <div className="flex items-center mb-4">
                     <div className="bg-orange-400 h-12 w-12 rounded-full flex items-center justify-center text-gray-700 text-2xl font-bold mr-3">
                         {postData.user.name ? getInitials(postData.user.name) : "-"}
@@ -123,22 +123,23 @@ function RepliesModal({ isOpen, onClose, postId }) {
               </div>
             )}
 
-            {repliesData.map((reply) => (
-              
-              <div key={reply.id} className="mb-2">
-                <p className="font-semibold">{reply.user.name}</p>
-                <p>{reply.description}</p>
-                <p className="text-gray-500">{formatDate(reply.created_at)}</p>
-                {reply.is_own_reply && (
-                  <button
-                    onClick={() => handleDeleteReply(reply.id)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    Delete
-                  </button>
-                )}
-              </div>
-            ))}
+            <div className="overflow-y-auto max-h-64">
+              {repliesData.map((reply) => (
+                <div key={reply.id} className="mb-2">
+                  <p className="font-semibold">{reply.user.name}</p>
+                  <p>{reply.description}</p>
+                  <p className="text-gray-500">{formatDate(reply.created_at)}</p>
+                  {reply.is_own_reply && (
+                    <button
+                      onClick={() => handleDeleteReply(reply.id)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
 
             <textarea
               className="w-full p-2 border bg-gray-200 border-gray-300 rounded-xl"

@@ -31,6 +31,8 @@ export default function Login() {
     }
   }
 
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
     <div className="flex items-center justify-center h-screen bg-gray-200">
       <div className="bg-white p-8 rounded-2xl shadow-md w-96">
@@ -44,15 +46,21 @@ export default function Login() {
             placeholder="Email"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label for="password">Password</label>
           <input
             className="border w-full p-2 rounded-2xl focus:outline-none focus:border-blue-500"
             value={payload?.password}
             onChange={(event) => setPayload({ ...payload, password: event.target.value })}
             placeholder="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
           />
+          <button
+            className="absolute top-1/2 right-2 transform -translate-y-1/4 px-2 py-3 text-sm text-gray-500 focus:outline-none"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
         </div>
         <div>
           <button
